@@ -1,65 +1,86 @@
-html, body{
-  width:500px;
-  text-align: center;
+html, body {
+	width: 500px;
+	text-align: center;
 }
+
 .App {
-  text-align: center;
+	text-align: center;
 
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+	animation: App-logo-spin infinite 20s linear;
+	height: 80px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+	background-color: #222222;
+	height: 150px;
+	padding: 20px;
+	color: white;
 }
 
 .App-intro {
-  font-size: large;
+	font-size: large;
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 #stars-frame .glyphicon {
 	margin: 0.3em;
-	font-size:2.0em;
-  color:navy;
+	font-size: 2.0em;
+	color: navy;
 
 }
-#stars-frame, #answer-frame{
-width:40%;
-float:left;
-text-align: left;
+
+#stars-frame, #answer-frame {
+	width: 40%;
+	float: left;
+	text-align: left;
+}
+#answer-frame .number{
+	display: inline-block;
+	margin: 5px;
+	width: 30px;
+	height: 30px;
+	font-size: 20px;
+	color: black;
+	border:1px solid  grey;
+	border-radius: 30%;
+	text-align: center;
+}
+#button-frame {
+	width: 20%;
+	float: left;
+	text-align: center;
+	margin-top: 50px;
 }
 
-#button-frame{
-width:20%;
-float:left;
-text-align:center;
-margin-top: 50px;
-}
-#stars-frame .well, #answer-frame .well{
-  height:150px;
+#stars-frame .well, #answer-frame .well {
+	height: 150px;
 }
 
-#numbers-frame .number{
-	display:inline-block;
-	margin:5px;
-	width:40px;
-	height:40px;
-  font-size: 22px;
-color:white;
-background:grey;
-border-radius:30%;
-padding-top:5px;
-text-align: center;
-cursor:pointer;
+#numbers-frame .number {
+	display: inline-block;
+	margin: 5px;
+	width: 40px;
+	height: 40px;
+	font-size: 22px;
+	color: white;
+	background: grey;
+	border-radius: 30%;
+	padding-top: 5px;
+	text-align: center;
+	cursor: pointer;
+}
+
+#numbers-frame .clicked{
+	background:silver !important;
 }
