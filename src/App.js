@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import './App.css';
 
-var StarsFrame = React.createClass({
-    render: function () {
+class StarsFrame extends Component {
+    constructor (props, context) {
+        super(props, context);
+    }
+
+    render () {
         var numberOfStarts = Math.floor(Math.random() * 9) + 1,
             stars = [];
         for (var i = 0; i < numberOfStarts; i++) {
@@ -21,43 +25,44 @@ var StarsFrame = React.createClass({
         )
     }
 
-});
+}
+;
 
-var ButtonFrame = React.createClass({
-    render: function () {
+class ButtonFrame extends Component {
+    render () {
         return (
             <div id="button-frame">
-
                 <button className="btn btn-primary btn-lg">=</button>
-
             </div>
         )
     }
-});
+}
+;
 
-var NumbersFrame = React.createClass({
+class NumbersFrame extends Component {
 
-    clickNumber(clickedNumber, oNumber) {
-        oNumber.target.className = "number clicked";
-
-        if (this.state.selectedNumbers.indexOf(clickedNumber) !== -1) {
+    clickNumber (number, oNumber) {
+        if (this.state.selectedNumbers.indexOf(number) !== -1) {
             return;
-        }
-
+        };
+        oNumber.target.className = "number clicked";
         this.setState(
             {
-                selectedNumbers: this.state.selectedNumbers.concat(clickedNumber)
+                selectedNumbers: this.state.selectedNumbers.concat(number)
             }
         );
         debugger;
 
-    },
-    getInitialState: function () {
-        return {
-            selectedNumbers: []
+    }
+    constructor (props) {
+        super(props);
+        this.state = {
+            selectedNumbers: this.props.selectedNumbers
         }
-    },
-    render: function () {
+        this.clickNumber = this.clickNumber.bind(this);
+    }
+
+    render () {
         var numbers = [];
 
         for (var i = 1; i <= 9; i++) {
@@ -73,15 +78,19 @@ var NumbersFrame = React.createClass({
             </div>
         )
     }
-});
+}
+;
 
-var AnswerFrame = React.createClass({
-    getInitialState: function () {
-        return {
-            selectedNumbers: []
+class AnswerFrame extends Component {
+    constructor (props) {
+        super(props);
+
+        this.state = {
+            selectedNumbers: this.props.selectedNumbers
         }
-    },
-    render: function () {
+        console.log(this.state.selectedNumbers);
+    }
+    render() {
         var selectedNumbers = this.state.selectedNumbers.map(function (i) {
             return (<span className="number">{i}</span>)
         });
@@ -93,14 +102,15 @@ var AnswerFrame = React.createClass({
             </div>
         )
     }
-});
+};
 
 class Game extends Component {
 
     constructor (props, context) {
-        super(props, context);
+
+    super(props, context);
         this.state = {
-            selectedNumbers: []
+            selectedNumbers: [1,2]
         };
     }
 
@@ -110,11 +120,11 @@ class Game extends Component {
                 <h2>Play Nine</h2>
                 <hr />
                 <div className="clearfix">
-                    <StarsFrame />
-                    <ButtonFrame selectedNumbers={this.selectedNumbers}/>
-                    <AnswerFrame selectedNumbers={this.selectedNumbers}/>
+                    <StarsFrame  selectedNumbers={this.state.selectedNumbers}/>
+                    <ButtonFrame selectedNumbers={this.state.selectedNumbers}/>
+                    <AnswerFrame selectedNumbers={this.state.selectedNumbers}/>
                 </div>
-                <NumbersFrame />
+                <NumbersFrame selectedNumbers={this.state.selectedNumbers}/>
             </div>
         );
     }
