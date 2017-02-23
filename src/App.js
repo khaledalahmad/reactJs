@@ -24,7 +24,6 @@ class StarsFrame extends Component {
             </div>
         )
     }
-
 }
 ;
 
@@ -51,6 +50,7 @@ class NumbersFrame extends Component {
                 selectedNumbers: this.state.selectedNumbers.concat(number)
             }
         );
+        this.addNumber(number);
         debugger;
 
     }
@@ -59,6 +59,8 @@ class NumbersFrame extends Component {
         this.state = {
             selectedNumbers: this.props.selectedNumbers
         }
+        debugger;
+        this.addNumber  = this.props.addNumber ;
         this.clickNumber = this.clickNumber.bind(this);
     }
 
@@ -114,17 +116,23 @@ class Game extends Component {
         };
     }
 
+    addSelectedNumber(number){
+      console.log(this.state.selectedNumbers);
+      this.state.selectedNumbers.push(number);
+      this.setState(this.state);
+    }
     render () {
         return (
             <div id="game">
                 <h2>Play Nine</h2>
                 <hr />
                 <div className="clearfix">
-                    <StarsFrame  selectedNumbers={this.state.selectedNumbers}/>
-                    <ButtonFrame selectedNumbers={this.state.selectedNumbers}/>
+                    <StarsFrame  selectedNumbers={this.state.selectedNumbers} />
+                    <ButtonFrame selectedNumbers={this.state.selectedNumbers}  />
                     <AnswerFrame selectedNumbers={this.state.selectedNumbers}/>
                 </div>
-                <NumbersFrame selectedNumbers={this.state.selectedNumbers}/>
+                <NumbersFrame selectedNumbers={this.state.selectedNumbers} addNumber={this.addSelectedNumber} />
+                <div>{this.state.selectedNumbers} </div>
             </div>
         );
     }
