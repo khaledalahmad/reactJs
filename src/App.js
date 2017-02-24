@@ -173,10 +173,6 @@ class Game extends Component {
             this.setState({
                 score: this.state.score+1
             });
-            if (this.state.selectedNumbers.length === 9){
-              alert('You Won :)');
-              return;
-            }
             this.getNewNumber(true);
           }
         }
